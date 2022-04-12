@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projek_kel_1/counter_screen.dart';
+import 'package:projek_kel_1/splash_screen.dart';
 
 import 'home_screen.dart';
 import 'list_screen.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(),
+      home: SplashScreen(),
     );
   }
 }

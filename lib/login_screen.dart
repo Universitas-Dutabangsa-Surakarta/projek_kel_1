@@ -12,6 +12,8 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController userNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+  bool hidePass = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,12 +44,22 @@ class _LoginScreenState extends State<LoginScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
             child: TextFormField(
               controller: passwordController,
-              obscureText: true,
+              obscureText: hidePass,
               decoration: InputDecoration(
                 label: Text('Password'),
                 hintText: 'Masukkan password',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(30),
+                ),
+                suffixIcon: IconButton(
+                  onPressed: () {
+                    print('hide pass = $hidePass');
+                    setState(() {
+                      hidePass = !hidePass;
+                    });
+                  },
+                  icon:
+                      Icon(hidePass ? Icons.visibility : Icons.visibility_off),
                 ),
               ),
             ),
@@ -62,7 +74,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               onPressed: () {
-                if(userNameController.text == 'budi' && passwordController.text=="123"){
+                if (userNameController.text == 'budi' &&
+                    passwordController.text == "123") {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text('berhasil login'),
@@ -71,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Navigator.of(context).push(
                     MaterialPageRoute(builder: (_) => ListScreen()),
                   );
-                }else{
+                } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text('username atau password salah'),
